@@ -458,7 +458,7 @@ public abstract class EPPXMLBase extends RTKBase
             }
         }
 
-        parser.parse(new InputSource(new ByteArrayInputStream(xml_.getBytes())));
+        parser.parse(new InputSource(new ByteArrayInputStream(xml_.getBytes("utf-8"))));
         Document document = parser.getDocument();
 
         if (!document.isSupported("Traversal", "2.0")) throw new RuntimeException("This DOM Document does not support Traversal");
@@ -783,7 +783,7 @@ public abstract class EPPXMLBase extends RTKBase
         parser.setFeature("http://apache.org/xml/features/continue-after-fatal-error", false);
         parser.setFeature("http://apache.org/xml/features/dom/include-ignorable-whitespace", false);
 
-        parser.parse(new InputSource(new ByteArrayInputStream(extension_string.getBytes())));
+        parser.parse(new InputSource(new ByteArrayInputStream(extension_string.getBytes("utf-8"))));
         Document document = parser.getDocument();
 
         if (!document.isSupported("Traversal", "2.0")) throw new RuntimeException("This DOM Document does not support Traversal");

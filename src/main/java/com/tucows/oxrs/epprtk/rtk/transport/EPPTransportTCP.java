@@ -247,10 +247,10 @@ public class EPPTransportTCP extends EPPTransportBase
             }
 
             String final_xml = buf.toString();
-
-            int len = final_xml.length();
+            byte[] bytebuff = final_xml.getBytes("utf-8");
+            int len = bytebuff.length;
             writeBufferSize(writer_to_server_, len + INT_SZ);
-            writer_to_server_.write(final_xml.getBytes(), 0, len);
+            writer_to_server_.write(bytebuff, 0, len);
             writer_to_server_.flush();
         }
         catch (Exception xcp)
