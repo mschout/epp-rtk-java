@@ -32,6 +32,7 @@ package com.tucows.oxrs.epprtk.rtk.xml;
 import java.util.*;
 import java.io.*;
 import java.lang.reflect.Array;
+import javax.xml.XMLConstants;
 
 import com.tucows.oxrs.epprtk.rtk.RTKBase;
 import org.openrtk.idl.epprtk.*;
@@ -312,7 +313,19 @@ public abstract class EPPXMLBase extends RTKBase
                     // Have to create a new doc from this extension node to
                     // get the raw XML.
 
-                    udoc.appendChild( udoc.importNode( extension_node, true ) );
+                    Element copy = (Element)udoc.importNode(a_node, true);
+
+                    // if there is an xsi:schemaLocation, but no xmlns:xsi, then add one
+                    if (copy.hasAttributeNS(XMLConstants.W3C_XML_SCHEMA_INSTANCE_NS_URI, "schemaLocation")) {
+                        String prefix = extension_node.getOwnerDocument().lookupPrefix(XMLConstants.W3C_XML_SCHEMA_INSTANCE_NS_URI);
+                        if (!copy.hasAttributeNS(XMLConstants.XMLNS_ATTRIBUTE_NS_URI, prefix)) {
+                            copy.setAttributeNS(XMLConstants.XMLNS_ATTRIBUTE_NS_URI, "xmlns:"+prefix,
+                                XMLConstants.W3C_XML_SCHEMA_INSTANCE_NS_URI);
+                        }
+                    }
+
+                    udoc.appendChild(copy);
+
 
                     String extension_string = createXMLSnippetFromDoc( udoc );
                     debug(DEBUG_LEVEL_TWO,method_name,"here's an extension xml string ["+extension_string+"]");
