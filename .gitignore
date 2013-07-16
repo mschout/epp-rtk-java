@@ -2,3 +2,6 @@
 *.i[mpw][lrs]
 build
 out
+/.classpath
+/.project
+/.settings
