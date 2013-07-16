@@ -213,6 +213,11 @@ public class EPPPoll extends EPPXMLBase implements epp_Poll
 
                     String a_node_name = a_node.getNodeName();
 
+                    // ignore verisign lowbalance-poll messages. EPP-RTK has no concept of
+                    // how to deal with this.
+                    if (a_node.getNodeName().equals("lowbalance-poll:pollData"))
+                        break;
+
                     debug(DEBUG_LEVEL_TWO,method_name,"poll resData node name ["+a_node_name+"]");
 
                     // search through poll extension package names
