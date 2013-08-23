@@ -297,7 +297,7 @@ public class EPPDomainInfo extends EPPDomainBase implements epp_DomainInfo
                     {
                         throw new epp_XMLException("authInfo element missing sub-element");
                     }
-                    action_response_.m_auth_info.m_value = auth_info_child.getFirstChild().getNodeValue();
+                    action_response_.m_auth_info.m_value = auth_info_child.getTextContent();
                     action_response_.m_auth_info.m_type = (epp_AuthInfoType)auth_type_string_to_type_hash_.get( ((Element)auth_info_child).getLocalName() );
                     action_response_.m_auth_info.m_roid = ((Element)auth_info_child).getAttribute("roid");
                 }
