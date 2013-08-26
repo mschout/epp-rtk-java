@@ -214,8 +214,8 @@ public class EPPContactInfo extends EPPContactBase implements epp_ContactInfo
             {
                 Node a_node = contact_info_result_list.item(count);
 
-                if ( a_node.getNodeName().equals("contact:id") ) { action_response_.m_id = a_node.getFirstChild().getNodeValue(); }
-                if ( a_node.getNodeName().equals("contact:roid") ) { action_response_.m_roid = a_node.getFirstChild().getNodeValue(); }
+                if ( a_node.getNodeName().equals("contact:id") ) { action_response_.m_id = a_node.getTextContent(); }
+                if ( a_node.getNodeName().equals("contact:roid") ) { action_response_.m_roid = a_node.getTextContent(); }
 
                 if ( a_node.getNodeName().equals("contact:postalInfo") )
                 {
@@ -238,17 +238,24 @@ public class EPPContactInfo extends EPPContactBase implements epp_ContactInfo
                 if ( a_node.getNodeName().equals("contact:voice") )
                 {
                     action_response_.m_voice = new epp_ContactPhone();
-                    action_response_.m_voice.m_value = a_node.getFirstChild().getNodeValue();
+                    if (a_node.hasChildNodes()) {
+                      action_response_.m_voice.m_value = a_node.getTextContent();
+                    }
                     action_response_.m_voice.m_extension = ((Element)a_node).getAttribute("x");
                 }
                 if ( a_node.getNodeName().equals("contact:fax") )
                 {
                     action_response_.m_fax = new epp_ContactPhone();
-                    action_response_.m_fax.m_value = a_node.getFirstChild().getNodeValue();
+                    if (a_node.hasChildNodes()) {
+                      action_response_.m_fax.m_value = a_node.getTextContent();
+                    }
+                    action_response_.m_fax.m_value = a_node.getTextContent();
                     action_response_.m_fax.m_extension = ((Element)a_node).getAttribute("x");
                 }
-                if ( a_node.getNodeName().equals("contact:email") ) { action_response_.m_email = a_node.getFirstChild().getNodeValue(); }
-
+                if ( a_node.getNodeName().equals("contact:email") )
+                {
+                    if (a_node.hasChildNodes()) { action_response_.m_email = a_node.getTextContent(); }
+                }
                 if ( a_node.getNodeName().equals("contact:status") )
                 {
                     epp_ContactStatus status = new epp_ContactStatus();
@@ -275,14 +282,14 @@ public class EPPContactInfo extends EPPContactBase implements epp_ContactInfo
                     statuses.add(status);
                 }
 
-                if ( a_node.getNodeName().equals("contact:clID") ) { action_response_.m_client_id = a_node.getFirstChild().getNodeValue(); }
+                if ( a_node.getNodeName().equals("contact:clID") ) { action_response_.m_client_id = a_node.getTextContent(); }
 
-                if ( a_node.getNodeName().equals("contact:crID") ) { action_response_.m_created_by = a_node.getFirstChild().getNodeValue(); }
-                if ( a_node.getNodeName().equals("contact:crDate") ) { action_response_.m_created_date = a_node.getFirstChild().getNodeValue(); }
-                if ( a_node.getNodeName().equals("contact:upID") ) { action_response_.m_updated_by = a_node.getFirstChild().getNodeValue(); }
-                if ( a_node.getNodeName().equals("contact:upDate") ) { action_response_.m_updated_date = a_node.getFirstChild().getNodeValue(); }
+                if ( a_node.getNodeName().equals("contact:crID") ) { action_response_.m_created_by = a_node.getTextContent(); }
+                if ( a_node.getNodeName().equals("contact:crDate") ) { action_response_.m_created_date = a_node.getTextContent(); }
+                if ( a_node.getNodeName().equals("contact:upID") ) { action_response_.m_updated_by = a_node.getTextContent(); }
+                if ( a_node.getNodeName().equals("contact:upDate") ) { action_response_.m_updated_date = a_node.getTextContent(); }
 
-                if ( a_node.getNodeName().equals("contact:trDate") ) { action_response_.m_transfer_date = a_node.getFirstChild().getNodeValue(); }
+                if ( a_node.getNodeName().equals("contact:trDate") ) { action_response_.m_transfer_date = a_node.getTextContent(); }
 
                 if ( a_node.getNodeName().equals("contact:authInfo") )
                 {
@@ -292,7 +299,7 @@ public class EPPContactInfo extends EPPContactBase implements epp_ContactInfo
                     {
                         throw new epp_XMLException("authInfo element missing sub-element");
                     }
-                    action_response_.m_auth_info.m_value = auth_info_child.getFirstChild().getNodeValue();
+                    action_response_.m_auth_info.m_value = auth_info_child.getTextContent();
                     action_response_.m_auth_info.m_type = (epp_AuthInfoType)auth_type_string_to_type_hash_.get( ((Element)auth_info_child).getLocalName() );
                     action_response_.m_auth_info.m_roid = ((Element)auth_info_child).getAttribute("roid");
                 }
@@ -338,8 +345,8 @@ public class EPPContactInfo extends EPPContactBase implements epp_ContactInfo
         {
             Node a_node = address_nodes.item(count);
 
-            if ( a_node.getNodeName().equals("contact:name") ) { name_address.m_name = a_node.getFirstChild().getNodeValue(); }
-            if ( a_node.getNodeName().equals("contact:org") ) { name_address.m_org = a_node.getFirstChild().getNodeValue(); }
+            if ( a_node.getNodeName().equals("contact:name") ) { name_address.m_name = a_node.getTextContent(); }
+            if ( a_node.getNodeName().equals("contact:org") ) { name_address.m_org = a_node.getTextContent(); }
 
             if ( a_node.getNodeName().equals("contact:addr") )
             {
@@ -354,24 +361,24 @@ public class EPPContactInfo extends EPPContactBase implements epp_ContactInfo
                     {
                         if ( address.m_street1 == null )
                         {
-                            address.m_street1 = an_inner_node.getFirstChild().getNodeValue();
+                            address.m_street1 = an_inner_node.getTextContent();
                         }
                         else if ( address.m_street2 == null )
                         {
-                            address.m_street2 = an_inner_node.getFirstChild().getNodeValue();
+                            address.m_street2 = an_inner_node.getTextContent();
                         }
                         else if ( address.m_street3 == null )
                         {
-                            address.m_street3 = an_inner_node.getFirstChild().getNodeValue();
+                            address.m_street3 = an_inner_node.getTextContent();
                         }
                         // No "else"... just ignoring situation where the
                         // server sends more street values than we expect.
                     }
 
-                    if ( an_inner_node.getNodeName().equals("contact:city") ) { address.m_city = an_inner_node.getFirstChild().getNodeValue(); }
-                    if ( an_inner_node.getNodeName().equals("contact:sp") ) { address.m_state_province = an_inner_node.getFirstChild().getNodeValue(); }
-                    if ( an_inner_node.getNodeName().equals("contact:pc") ) { address.m_postal_code = an_inner_node.getFirstChild().getNodeValue(); }
-                    if ( an_inner_node.getNodeName().equals("contact:cc") ) { address.m_country_code = an_inner_node.getFirstChild().getNodeValue(); }
+                    if ( an_inner_node.getNodeName().equals("contact:city") ) { address.m_city = an_inner_node.getTextContent(); }
+                    if ( an_inner_node.getNodeName().equals("contact:sp") ) { address.m_state_province = an_inner_node.getTextContent(); }
+                    if ( an_inner_node.getNodeName().equals("contact:pc") ) { address.m_postal_code = an_inner_node.getTextContent(); }
+                    if ( an_inner_node.getNodeName().equals("contact:cc") ) { address.m_country_code = an_inner_node.getTextContent(); }
                 }
                 name_address.m_address = address;
             }
