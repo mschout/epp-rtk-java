@@ -29,6 +29,7 @@ fi
 
 java -Dssl.props.location=$RTK_HOME/java/ssl \
      -Drtk.props.file=$RTK_HOME/java/etc/rtk.properties \
+     -Djavax.net.ssl.trustStore=/usr/java/j2sdk1.4.2_19/jre/lib/security/cacerts \
      -cp $RTK_HOME/java/lib/xerces.jar:$RTK_HOME/java/lib/epp-rtk-java.jar:$RTK_HOME/java/lib/regexp.jar:$RTK_HOME/java/lib/log4j.jar:$RTK_HOME/java/lib/bcprov-jdk14-115.jar \
      com.tucows.oxrs.epp$EPP_VERSION.rtk.example.$EXAMPLE_CLASS \
         $EPP_HOST $EPP_PORT $CLIENT_ID $PASSWORD \

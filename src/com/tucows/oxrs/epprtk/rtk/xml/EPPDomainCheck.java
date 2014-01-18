@@ -199,10 +199,16 @@ public class EPPDomainCheck extends EPPDomainBase implements epp_DomainCheck
 
             Element response_data_element = getElement(response_node.getChildNodes(), "resData");
 
-            Node domain_check_data_node = response_data_element.getElementsByTagName("domain:chkData").item(0);
+			if (response_data_element != null) {
+				NodeList chkData = response_data_element
+						.getElementsByTagName("domain:chkData");
+				if (chkData != null) {
+					Node domain_check_data_node = response_data_element
+							.getElementsByTagName("domain:chkData").item(0);
 
-            action_response_.m_results = parseGenericCheckResults(domain_check_data_node);
-
+					action_response_.m_results = parseGenericCheckResults(domain_check_data_node);
+				}
+			}
         }
         catch (SAXException xcp)
         {

@@ -8,7 +8,7 @@
   <property name="dist.home"       value="dist"/>
   <property name="optimize"        value="true"/>
   <property name="project.name"    value="epp-rtk-java"/>
-  <property name="project.version" value="0.9.7"/>
+  <property name="project.version" value="0.9.8"/>
   <!-- property name="build.compiler"  value="jikes"/ -->
   <!-- property name="build.compiler" value="classic"/ -->
   <!-- property name="build.compiler" value="modern"/ -->

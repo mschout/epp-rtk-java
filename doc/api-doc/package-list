@@ -61,3 +61,4 @@ org.openrtk.idl.epprtk
 org.openrtk.idl.epprtk.contact
 org.openrtk.idl.epprtk.domain
 org.openrtk.idl.epprtk.host
+org.openrtk.idl.epprtk.registrar
