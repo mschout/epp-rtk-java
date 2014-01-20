@@ -3,6 +3,10 @@ Copyright (c) 2003 Afilias, Ltd. All rights reserved.
 
 EPP RTK Java Versions
 ======================
+epp-rtk-java-0.9.8 - Sep 3, 2013
+
++ Added registrar info command
+
 epp-rtk-java-0.9.7 - Feb 2, 2011
 
  + Various C++ compiler compatibility changes.
@@ -36,7 +40,7 @@ epp-rtk-java-0.7.4 - Sept 10, 2003
  + Added addition of BounyCastle security provider if the 
    keystore format is BC
  + Added createXMLSnippetFromDoc() to epp02's EPPXMLBase
-   needed for new RGPRenew liberty-rtk-addon unspec
+   needed for new RGPRenew afilias-rtk-addon unspec
    class
 
 epp-rtk-java-0.7.3 - Sept 2, 2003
