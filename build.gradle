@@ -1,5 +1,10 @@
-apply plugin: 'idea'
-apply plugin: 'java'
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+}
+
+group = 'epp-rtk'
+version = '0.9.9'
 
 dependencies {
     implementation 'bouncycastle:bcprov-jdk16:140'
@@ -10,4 +15,21 @@ dependencies {
 
 repositories {
     mavenCentral()
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId    = 'com.gkgnet.epprtk'
+            artifactId = 'epp-rtk-gkg'
+            version    = '0.9.9'
+            from components.java
+        }
+    }
+
+    repositories {
+        maven {
+            url = layout.buildDirectory.dir('repo')
+        }
+    }
 }
