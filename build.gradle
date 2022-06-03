@@ -25,7 +25,7 @@ java {
 
 signing {
     useGpgCmd()
-    sign configurations.archives
+    sign publishing.publications
 }
 
 publishing {
