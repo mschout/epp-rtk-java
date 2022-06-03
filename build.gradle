@@ -36,6 +36,30 @@ publishing {
             version    = '0.9.9'
 
             from components.java
+
+            pom {
+                name = "${groupId}:${artifactId}"
+                description = 'Fork of EPP RTK Java'
+                url = 'https://github.com/mschout/epp-rtk-java'
+                licenses {
+                    license {
+                        name = 'The Apache License, Version 1.1'
+                        url = 'https://www.apache.org/licenses/LICENSE-1.1'
+                    }
+                }
+                developers {
+                    developer {
+                        name = 'Michael Schout'
+                        email = 'schoutm@gmail.com'
+                        organizationUrl = 'https://github.com/mscnout'
+                    }
+                }
+                scm {
+                    connection = 'scm:git:git://github.com/mschout/epp-rtk-java.git'
+                    developerConnection = 'scm:git:ssh://github.com:mschout/epp-rtk-java.git'
+                    url = 'https://github.com/mschout/epp-rtk-java/tree/master'
+                }
+            }
         }
     }
 
