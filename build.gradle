@@ -25,7 +25,7 @@ java {
 publishing {
     publications {
         maven(MavenPublication) {
-            groupId    = 'com.github.mschout'
+            groupId    = 'io.github.mschout'
             artifactId = 'epp-rtk-java'
             version    = '0.9.9'
 
