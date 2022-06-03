@@ -25,9 +25,10 @@ java {
 publishing {
     publications {
         maven(MavenPublication) {
-            groupId    = 'com.gkgnet.epprtk'
-            artifactId = 'epp-rtk-gkg'
+            groupId    = 'com.github.mschout'
+            artifactId = 'epp-rtk-java'
             version    = '0.9.9'
+
             from components.java
         }
     }
