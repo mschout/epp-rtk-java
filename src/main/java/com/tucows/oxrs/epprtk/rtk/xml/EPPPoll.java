@@ -242,8 +242,9 @@ public class EPPPoll extends EPPXMLBase implements epp_Poll
                     {
                         try
                         {
-                            debug(DEBUG_LEVEL_TWO,method_name,"Trying to instantiate poll resData parser class ["+poll_extension_package_name+class_name+"]");
-                            poll_res_data = (PollResData) Class.forName( poll_extension_package_name + "." + class_name ).newInstance();
+                            debug(DEBUG_LEVEL_TWO,method_name,"Trying to instantiate poll resData parser class ["+poll_extension_package_name+"."+class_name+"]");
+                            poll_res_data = (PollResData) Class.forName( poll_extension_package_name + "." + class_name )
+                                    .getDeclaredConstructor().newInstance();
                         }
                         catch (ClassNotFoundException xcp)
                         {
