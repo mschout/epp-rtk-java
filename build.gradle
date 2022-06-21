@@ -26,6 +26,15 @@ java {
   withJavadocJar()
 }
 
+// Shut up Java 8 doclint warnings for javadoc
+if (JavaVersion.current().isJava8Compatible()) {
+  allprojects {
+    tasks.withType(Javadoc) {
+      options.addStringOption('Xdoclint:none', '-quiet')
+    }
+  }
+}
+
 signing {
     useGpgCmd()
     sign publishing.publications
