@@ -7,6 +7,9 @@ plugins {
 group = 'epp-rtk'
 version = '0.9.9'
 
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
+
 dependencies {
     implementation 'bouncycastle:bcprov-jdk16:140'
     implementation 'log4j:log4j:1.2.17'
