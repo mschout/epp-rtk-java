@@ -4,17 +4,19 @@ plugins {
     id 'signing'
 }
 
-group = 'epp-rtk'
-version = '0.9.10'
-
-sourceCompatibility = '1.8'
-targetCompatibility = '1.8'
+group = 'io.github.mschout'
 
 dependencies {
     implementation 'bouncycastle:bcprov-jdk16:140'
     implementation 'log4j:log4j:1.2.17'
     implementation 'regexp:regexp:1.3'
     implementation 'xerces:xerces:2.4.0'
+}
+
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(8))
+    }
 }
 
 repositories {
@@ -45,7 +47,7 @@ publishing {
         maven(MavenPublication) {
             groupId    = 'io.github.mschout'
             artifactId = 'epp-rtk-java'
-            version    = '0.9.10'
+            version    = '0.9.11'
 
             from components.java
 
