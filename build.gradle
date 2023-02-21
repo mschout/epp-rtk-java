@@ -11,12 +11,23 @@ dependencies {
     implementation 'log4j:log4j:1.2.17'
     implementation 'regexp:regexp:1.3'
     implementation 'xerces:xerces:2.4.0'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+
+    testImplementation 'io.hosuaby:inject-resources-core:0.3.2'
+    testImplementation 'io.hosuaby:inject-resources-junit-jupiter:0.3.2'
+    testImplementation 'org.assertj:assertj-core-java8:1.0.0m1'
 }
 
 java {
     toolchain {
         languageVersion.set(JavaLanguageVersion.of(8))
     }
+}
+
+test {
+    useJUnitPlatform()
 }
 
 repositories {
